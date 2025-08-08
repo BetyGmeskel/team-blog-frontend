@@ -1,0 +1,78 @@
+/* Import Tailwind directives FIRST */
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+@import "tailwindcss";
+
+/* Your custom theme variables */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: monospace;
+}
+
+@layer base {
+  /* Apply theme variables */
+  :root {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #0a0a0a;
+      --foreground: #ededed;
+    }
+  }
+
+  /* Base styles */
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+/* Scrollbar styles */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom card shadows for dark mode */
+@layer components {
+  .card-shadow {
+    /* shadow-md equivalent */
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card-shadow:hover {
+    /* hover:shadow-lg equivalent */
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dark mode shadows */
+  @media (prefers-color-scheme: dark) {
+    .card-shadow {
+      box-shadow:
+        0 4px 6px -1px rgba(31, 41, 55, 0.5),
+        0 2px 4px -2px rgba(31, 41, 55, 0.5);
+    }
+    .card-shadow:hover {
+      box-shadow:
+        0 10px 15px -3px rgba(31, 41, 55, 0.7),
+        0 4px 6px -4px rgba(31, 41, 55, 0.7);
+    }
+  }
+}
